@@ -22,6 +22,8 @@ Requirements|
 ---
 
 ### `graphical_client/` path consists files for UI-driven client .
+sample ![video](https://github.com/ibo52/Deliver2Me/blob/master/images/sampleGUIvideo.webm) and screenshots
+
 ![ui_cli](https://github.com/ibo52/Deliver2Me/blob/master/images/loginWindow.png)
 ![ui_cli](https://github.com/ibo52/Deliver2Me/blob/master/images/marketsWindow.png)
 ![ui_cli](https://github.com/ibo52/Deliver2Me/blob/master/images/userSettingsWindow.png)
