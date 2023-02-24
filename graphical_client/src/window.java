@@ -2,6 +2,7 @@
 import customscrollbar.customScrollBarUI;
 import connectdb.ConnectDB;
 import java.awt.Color;
+import java.awt.Component;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class window extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         changeSettingsPanel = new javax.swing.JPanel();
+        selectedMarketPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(640, 360));
@@ -156,7 +158,7 @@ public class window extends javax.swing.JFrame {
             .addGroup(marketsTopPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(restaurantsLabel)
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
         marketsTopPanelLayout.setVerticalGroup(
             marketsTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,6 +179,11 @@ public class window extends javax.swing.JFrame {
         marketsPlace.setBorder(javax.swing.BorderFactory.createTitledBorder("Markets"));
         marketsPlace.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         marketsPlace.setPreferredSize(new java.awt.Dimension(500, 360));
+        marketsPlace.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                marketsPlaceMouseClicked(evt);
+            }
+        });
         marketsPlace.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 20));
         marketsScrollPane.setViewportView(marketsPlace);
         //add sample markets to panel for unauthorized users
@@ -406,7 +413,7 @@ public class window extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, signUpPanelLayout.createSequentialGroup()
                         .addComponent(confirmSignUpButton1)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(backToMarketScreenButton1)
                 .addContainerGap())
             .addGroup(signUpPanelLayout.createSequentialGroup()
@@ -456,7 +463,7 @@ public class window extends javax.swing.JFrame {
             userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userInfoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                 .addContainerGap())
         );
         userInfoPanelLayout.setVerticalGroup(
@@ -473,7 +480,7 @@ public class window extends javax.swing.JFrame {
         changeSettingsPanel.setLayout(changeSettingsPanelLayout);
         changeSettingsPanelLayout.setHorizontalGroup(
             changeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGap(0, 433, Short.MAX_VALUE)
         );
         changeSettingsPanelLayout.setVerticalGroup(
             changeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,6 +501,10 @@ public class window extends javax.swing.JFrame {
         );
 
         CardPanel.add(userSettingsPanel, "userSettingsCard");
+
+        selectedMarketPanel.setPreferredSize(new java.awt.Dimension(500, 360));
+        selectedMarketPanel.setLayout(new java.awt.BorderLayout());
+        CardPanel.add(selectedMarketPanel, "selectedMarketCard");
 
         windowSplitPane.setRightComponent(CardPanel);
 
@@ -631,8 +642,8 @@ public class window extends javax.swing.JFrame {
 
     private void applyLogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyLogInButtonMouseClicked
         // TODO add your handling code here:
-        //appDB.logIn("halilibo@mail.com","ibo123");
-        appDB.logIn(emailField.getText(), String.valueOf(passwdField.getPassword()) );
+        appDB.logIn("halilibo@mail.com","ibo123");
+        //appDB.logIn(emailField.getText(), String.valueOf(passwdField.getPassword()) );
         
         //authentication failed
         if (appDB.isLogged()<1) {
@@ -651,8 +662,9 @@ public class window extends javax.swing.JFrame {
             c.show(CardPanel, "commerceWindowCard");
             
             addMarketsToScrollPane(appDB.account.getRestaurantsPopularity());
+            
             restaurantsLabel.setText(String.format("Restaurants on %s",appDB.account.getID()[2] ));
-            System.out.println(getClass().getResource("userInfoHtml.html"));
+            //System.out.println(getClass().getResource("userInfoHtml.html"));
             /*
             Path fileName=Path.of( getClass().getResource("userInfoHtml.html") );
             String html=Files.readAllBytes();
@@ -695,13 +707,62 @@ public class window extends javax.swing.JFrame {
         c.show(CardPanel, "userSettingsCard");
     }//GEN-LAST:event_settingsButtonMouseClicked
 
+    private void marketsPlaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketsPlaceMouseClicked
+        // TODO add your handling code here:
+        Component[] c=marketsPlace.getComponents();
+        java.awt.Point mPos=evt.getPoint();
+        
+        for(Component cpt:c){
+            if (mPos.getX()>=cpt.getX()
+                    && mPos.getX()<=cpt.getX()+cpt.getWidth() ) {
+                
+                if (mPos.getY()>=cpt.getY()
+                    && mPos.getY()<=cpt.getY()+cpt.getHeight()) {
+                    
+                    marketPlaceBox mpb=(marketPlaceBox)cpt;
+                    getSelectedMarketPlace(mpb);
+                }
+   
+            }
+        }
+    }//GEN-LAST:event_marketsPlaceMouseClicked
+
+    private void getSelectedMarketPlace(marketPlaceBox market){
+        
+        marketDetailBox mDetail=new marketDetailBox();
+        javax.swing.JPanel p=(javax.swing.JPanel)market.getComponent(0);
+        javax.swing.JLabel label=(javax.swing.JLabel)p.getComponent(1);
+        mDetail.setMarketNameLabel(label.getText());
+        
+        List<List<String>> list;
+        if (appDB.isLogged()<1) {
+            list=appDB.getMenues(market.getRestaurantID());
+            mDetail.appendReview(appDB.getCommentsOfRestaurant(market.getRestaurantID()));
+        }else{
+            list=appDB.account.getMenues(market.getRestaurantID());
+            mDetail.appendReview(appDB.account.getCommentsOfRestaurant(market.getRestaurantID()));
+        }
+        
+        for (int i = 0; i < list.size(); i++) {
+            mDetail.appendMenu(list.get(i).get(0), list.get(i).get(1));
+        }
+        
+        
+        selectedMarketPanel.removeAll();
+        selectedMarketPanel.add(mDetail);
+        
+        java.awt.CardLayout c=(java.awt.CardLayout)(CardPanel.getLayout());
+        c.show(CardPanel, "selectedMarketCard");
+        
+    }
     
-    private void addMarketToScrollPane(String marketName,String marketRating){
+    private void addMarketToScrollPane(int marketID,String marketName,String marketRating){
 
             marketPlaceBox a=new marketPlaceBox();
             
             a.setPreferredSize(new java.awt.Dimension(192,192));
             
+            a.setRestaurantID(marketID);
             a.setNameLabel(marketName);
             a.setRatingLabel(marketRating);
             a.setMarketImage(new javax.swing.ImageIcon( getClass().getResource("/Images/market/marketSampleImage.jpg")));
@@ -741,9 +802,12 @@ public class window extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void addMarketsToScrollPane(List<List< String >> list){
+        
         for (int i = 0; i < list.size(); i++) {
-                
-                addMarketToScrollPane(list.get(i).get(0), list.get(i).get(1));
+
+                addMarketToScrollPane(Integer.parseInt(list.get(i).get(0))
+                        , list.get(i).get(1)
+                        ,list.get(i).get(2));
                 }
     }
     public static void main(String args[]) {
@@ -805,6 +869,7 @@ public class window extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwdField;
     private javax.swing.JLabel restaurantsLabel;
     private javax.swing.JPanel rootPanel;
+    private javax.swing.JPanel selectedMarketPanel;
     private javax.swing.JButton settingsButton;
     private javax.swing.JTextField signUpEmailField;
     private javax.swing.JLabel signUpInformLabel;

@@ -112,7 +112,7 @@ public class ConnectDB {
                     + " FROM restaurant NATURAL JOIN branch"
                     + " NATURAL JOIN \"comment\" WHERE city_id="+this.city_id
                     + " GROUP BY restaurant_name)"
-                    + " SELECT restaurant_name,\"liking rate\""
+                    + " SELECT restaurant_id,restaurant_name,\"liking rate\""
                     + " FROM popularities NATURAL JOIN restaurant"
                     + " ORDER BY \"liking rate\" DESC";
             
@@ -126,14 +126,20 @@ public class ConnectDB {
 
                 for (int i = 0; rs.next(); i++) {
 
-                    String name=rs.getString(1);
-                    String rate=rs.getString(2).substring(0, 4);
+                    String id=rs.getString(1);
+                    String name=rs.getString(2);
+                    String rate=rs.getString(3).substring(0, 4);
 
                     if (rate == null) {
                         rate="no rate yet";
                     }
+                    if (id==null) {
+                        id="no id";
+                    }
 
                     list.add(new ArrayList<String>());
+                    
+                    list.get(i).add(id);
                     list.get(i).add(name);
                     list.get(i).add(rate);
 
@@ -142,6 +148,65 @@ public class ConnectDB {
                 Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
             }
             return list;
+        }
+        
+        public List<List< String >> getMenues(int restaurant_id){
+        //get all menu of specific restaurants near customer city/address
+        
+            String Query="WITH restaurants_on_city AS"
+                    + " (SELECT * FROM restaurant NATURAL JOIN branch WHERE city_id="+this.city_id
+                    +"AND restaurant_id="+restaurant_id+ ")"
+                    +" SELECT menu_name,price"
+                    +" FROM restaurants_on_city NATURAL JOIN \"OffersMenu\"";
+        
+            ResultSet rs=ConnectDB.this.sqlQuery(Query);
+            /*
+            *
+            *
+            */
+            return dumpResultsToArray(rs);
+            
+        }
+        
+        public List<List< String >> getCommentsOfRestaurant(int restaurant_id){
+            /*returns (if exists) the comments and rate of menu specified
+            */
+            String Query="WITH all_comments AS(SELECT * FROM restaurant"
+                    +" NATURAL JOIN \"comment\" NATURAL JOIN \"orderDetails\")"
+                    +" SELECT name,entry,date,rate"
+                    + " FROM all_comments natural join customer WHERE customer_id=customer_id"
+                    +" and restaurant_id="+restaurant_id;
+            ResultSet rs=ConnectDB.this.sqlQuery(Query);
+            
+            return dumpResultsToArray(rs);
+            
+        }
+        
+        public List<List< String >> dumpResultsToArray(ResultSet rs){
+            List<List< String >> list=new ArrayList<>();
+            
+            try {
+                int columnsPerRow=rs.getMetaData().getColumnCount();
+                
+                for (int i = 0; rs.next(); i++) {
+                    list.add(new ArrayList<String>());
+                    
+                    
+                    for (int j = 0; j < columnsPerRow; j++) {
+
+                        String s=rs.getString(j+1);
+                        if (s == null) {
+                            s="null";
+                        }
+                        list.get(i).add(s);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return list;
+            
         }
         
         public void getMostPopularRestaurant(){
@@ -185,41 +250,7 @@ public class ConnectDB {
             
         }
         
-        public void getCommentsOfMenu(int menu_id){
-            /*returns (if exists) the comments and rate of menu specified
-            */
-            String Query="WITH all_comments AS(SELECT * FROM restaurant"
-                    +" NATURAL JOIN \"comment\" NATURAL JOIN \"orderDetails\")"
-                    +" SELECT restaurant_name,order_id,date,entry,rate"
-                    + " FROM all_comments natural join orderings"
-                    +" WHERE menu_id="+menu_id;
-            
-            ResultSet rs=ConnectDB.this.sqlQuery(Query);
-            
-            System.out.println("--------------------------------------\n"
-                             + "COMMENTS LEAVED TO MENU:"+menu_id
-                             + "\n--------------------------------------");
-            printQueryResults(rs);
-            
-        }
         
-        public void getMenues(int restaurant_id){
-        //get all menu of specific restaurants near customer city/address
-        
-            String Query="WITH restaurants_on_city AS"
-                    + " (SELECT * FROM restaurant NATURAL JOIN branch WHERE city_id="+this.city_id
-                    +"AND restaurant_id="+restaurant_id+ ")"
-                    +" SELECT menu_id,menu_name,price"
-                    +" FROM restaurants_on_city NATURAL JOIN \"OffersMenu\"";
-        
-            ResultSet rs=ConnectDB.this.sqlQuery(Query);
-            
-            System.out.println("-------------------------------------"
-                    + "\n MENU OF RESTAURANT"
-                    + "\n---------------------------------------");
-            printQueryResults(rs);
-            
-        }
         
         public void getCategories(){
         //get all categories from all restaurants near customer city/address
@@ -554,7 +585,7 @@ public class ConnectDB {
                 + " FROM restaurant NATURAL JOIN branch"
                 + " NATURAL JOIN \"comment\""
                 + " GROUP BY restaurant_name)"
-                + " SELECT restaurant_name,\"liking rate\""
+                + " SELECT restaurant_id,restaurant_name,\"liking rate\""
                 + " FROM popularities NATURAL JOIN restaurant"
                 + " ORDER BY \"liking rate\" DESC";
         
@@ -569,14 +600,16 @@ public class ConnectDB {
             
             for (int i = 0; rs.next(); i++) {
                 
-                String name=rs.getString(1);
-                String rate=rs.getString(2).substring(0, 4);
+                String id=rs.getString(1);
+                String name=rs.getString(2);
+                String rate=rs.getString(3).substring(0, 4);
                 
                 if (rate == null) {
                     rate="no rate yet";
                 }
                 
                 list.add(new ArrayList<String>());
+                list.get(i).add(id);
                 list.get(i).add(name);
                 list.get(i).add(rate);
                 
@@ -586,6 +619,64 @@ public class ConnectDB {
         }
         return list;
     }
+    
+    public List<List< String >> getMenues(int restaurant_id){
+        //get all menu of specific restaurants near customer city/address
+        
+            String Query="WITH restaurants_on_city AS"
+                    + " (SELECT * FROM restaurant NATURAL JOIN branch"
+                    +" WHERE restaurant_id="+restaurant_id+ ")"
+                    +" SELECT menu_name,price"
+                    +" FROM restaurants_on_city NATURAL JOIN \"OffersMenu\"";
+        
+            ResultSet rs=ConnectDB.this.sqlQuery(Query);
+            /*
+            *
+            *
+            */
+            return dumpResultsToArray(rs);
+        }
+    
+    public List<List< String >> getCommentsOfRestaurant(int restaurant_id){
+            /*returns (if exists) the comments and rate of menu specified
+            */
+            String Query="WITH all_comments AS(SELECT * FROM restaurant"
+                    +" NATURAL JOIN \"comment\" NATURAL JOIN \"orderDetails\")"
+                    +" SELECT name,entry,date,rate"
+                    + " FROM all_comments natural join customer WHERE customer_id=customer_id"
+                    +" and restaurant_id="+restaurant_id;
+            ResultSet rs=ConnectDB.this.sqlQuery(Query);
+            
+            return dumpResultsToArray(rs);
+            
+        }
+        public List<List< String >> dumpResultsToArray(ResultSet rs){
+            List<List< String >> list=new ArrayList<>();
+            
+            try {
+                int columnsPerRow=rs.getMetaData().getColumnCount();
+                
+                for (int i = 0; rs.next(); i++) {
+                    list.add(new ArrayList<String>());
+                    
+                    
+                    for (int j = 0; j < columnsPerRow; j++) {
+
+                        String s=rs.getString(j+1);
+                        if (s == null) {
+                            s="null";
+                        }
+                        list.get(i).add(s);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return list;
+            
+        }
+    
     
 
     

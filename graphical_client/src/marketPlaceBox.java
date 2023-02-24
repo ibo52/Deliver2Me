@@ -16,6 +16,8 @@ public class marketPlaceBox extends javax.swing.JPanel {
     java.awt.Image marketImage;
     java.awt.Image rateImage;
     
+    private int restaurant_id;
+    
     
     public marketPlaceBox() {
         initComponents();
@@ -23,6 +25,14 @@ public class marketPlaceBox extends javax.swing.JPanel {
         rateImage=new javax.swing.ImageIcon( getClass().getResource("/Images/emoji/bad.png")).getImage();
         drawImageToPanel();
     }
+    
+    public int getRestaurantID(){
+        return this.restaurant_id;
+    }
+    public void setRestaurantID(int id){
+        this.restaurant_id=id;
+    }
+    
     public void setNameLabel(String name){
         marketNameLabel.setText(name);
     }
