@@ -14,16 +14,19 @@ Requirements|
 
 ---
 
-## `terminal_client/` path consists files for terminal-driven client .
-### sample action
-![terminal cli](https://github.com/ibo52/Deliver2Me/blob/master/images/termianalClientOptions.png)
-### available user options
-![terminal cli](https://github.com/ibo52/Deliver2Me/blob/master/images/termianalClientOptions.png)
----
-
 ### `graphical_client/` path consists files for UI-driven client .
-sample ![video](https://github.com/ibo52/Deliver2Me/blob/master/images/sampleGUIvideo.webm) and screenshots
-
+#### sample video
+![video](https://github.com/ibo52/Deliver2Me/blob/master/images/sampleGUIvideo.gif)
+#### sample images
 ![ui_cli](https://github.com/ibo52/Deliver2Me/blob/master/images/loginWindow.png)
 ![ui_cli](https://github.com/ibo52/Deliver2Me/blob/master/images/marketsWindow.png)
 ![ui_cli](https://github.com/ibo52/Deliver2Me/blob/master/images/userSettingsWindow.png)
+
+
+---
+
+## `terminal_client/` path consists files for terminal-driven client .
+### sample action
+![terminal cli](https://github.com/ibo52/Deliver2Me/blob/master/images/terminalClientOptions.png)
+### available user options
+![terminal cli](https://github.com/ibo52/Deliver2Me/blob/master/images/terminalClientOptions.png)
