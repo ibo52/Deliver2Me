@@ -3,10 +3,16 @@ import customscrollbar.customScrollBarUI;
 import connectdb.ConnectDB;
 import java.awt.Color;
 import java.awt.Component;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,12 +44,16 @@ public class window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         rootPanel = new javax.swing.JPanel();
         windowSplitPane = new javax.swing.JSplitPane();
         userPanel = new javax.swing.JPanel();
         AppNameLabel2 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         settingsButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
+        cartButton = new javax.swing.JButton();
+        marketButton = new javax.swing.JButton();
         CardPanel = new javax.swing.JPanel();
         commerceWindowPanel = new javax.swing.JPanel();
         marketsTopPanel = new javax.swing.JPanel();
@@ -72,11 +82,36 @@ public class window extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         userInfoPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        htmlEditorPane = new javax.swing.JEditorPane();
         changeSettingsPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        changeSettingsCityComboBox = new javax.swing.JComboBox<>();
+        changeSettingsCityLabel = new javax.swing.JLabel();
+        changeSettingsAddressLabel = new javax.swing.JLabel();
+        changeSettingsAddressField = new javax.swing.JTextField();
+        changeSettingsPhoneField = new javax.swing.JTextField();
+        changeSettingsPhoneLabel = new javax.swing.JLabel();
+        changeSettingsCardLabel = new javax.swing.JLabel();
+        changeSettingsCardField = new javax.swing.JTextField();
+        changeSettingsApplyButton = new javax.swing.JButton();
         selectedMarketPanel = new javax.swing.JPanel();
+        cartPanel = new javax.swing.JPanel();
+        orderDetailsPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        ProceedToCheckoutButton = new javax.swing.JButton();
+        totPriceLabel = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        itemsPanel = new javax.swing.JPanel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Deliver2Me - food delivery app");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setSize(new java.awt.Dimension(640, 360));
 
         rootPanel.setPreferredSize(new java.awt.Dimension(640, 360));
@@ -94,6 +129,9 @@ public class window extends javax.swing.JFrame {
         loginButton.setForeground(new java.awt.Color(1, 1, 1));
         loginButton.setText("Login");
         loginButton.setFocusable(false);
+        loginButton.setMaximumSize(new java.awt.Dimension(80, 35));
+        loginButton.setMinimumSize(new java.awt.Dimension(80, 35));
+        loginButton.setPreferredSize(new java.awt.Dimension(80, 35));
         loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loginButtonMouseClicked(evt);
@@ -103,9 +141,47 @@ public class window extends javax.swing.JFrame {
         settingsButton.setBackground(new java.awt.Color(254, 254, 254));
         settingsButton.setText("Settings");
         settingsButton.setFocusable(false);
+        settingsButton.setPreferredSize(new java.awt.Dimension(81, 35));
         settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingsButtonMouseClicked(evt);
+            }
+        });
+
+        logoutButton.setVisible(false);
+        logoutButton.setBackground(new java.awt.Color(254, 254, 254));
+        logoutButton.setText("Log out");
+        logoutButton.setFocusable(false);
+        logoutButton.setMaximumSize(new java.awt.Dimension(80, 35));
+        logoutButton.setMinimumSize(new java.awt.Dimension(80, 35));
+        logoutButton.setPreferredSize(new java.awt.Dimension(80, 35));
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
+
+        cartButton.setBackground(new java.awt.Color(254, 254, 254));
+        cartButton.setText("Cart");
+        cartButton.setFocusable(false);
+        cartButton.setMaximumSize(new java.awt.Dimension(80, 35));
+        cartButton.setMinimumSize(new java.awt.Dimension(80, 35));
+        cartButton.setPreferredSize(new java.awt.Dimension(80, 35));
+        cartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cartButtonMouseClicked(evt);
+            }
+        });
+
+        marketButton.setBackground(new java.awt.Color(254, 254, 254));
+        marketButton.setText("Markets");
+        marketButton.setFocusable(false);
+        marketButton.setMaximumSize(new java.awt.Dimension(80, 35));
+        marketButton.setMinimumSize(new java.awt.Dimension(80, 35));
+        marketButton.setPreferredSize(new java.awt.Dimension(80, 35));
+        marketButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                marketButtonMouseClicked(evt);
             }
         });
 
@@ -116,9 +192,13 @@ public class window extends javax.swing.JFrame {
             .addGroup(userPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AppNameLabel2)
-                    .addComponent(settingsButton))
+                    .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(marketButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cartButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(loginButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userPanelLayout.setVerticalGroup(
@@ -128,9 +208,15 @@ public class window extends javax.swing.JFrame {
                 .addComponent(AppNameLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(settingsButton)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(marketButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         windowSplitPane.setLeftComponent(userPanel);
@@ -158,7 +244,7 @@ public class window extends javax.swing.JFrame {
             .addGroup(marketsTopPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(restaurantsLabel)
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
         marketsTopPanelLayout.setVerticalGroup(
             marketsTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +265,6 @@ public class window extends javax.swing.JFrame {
         marketsPlace.setBorder(javax.swing.BorderFactory.createTitledBorder("Markets"));
         marketsPlace.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         marketsPlace.setPreferredSize(new java.awt.Dimension(500, 360));
-        marketsPlace.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                marketsPlaceMouseClicked(evt);
-            }
-        });
         marketsPlace.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 20));
         marketsScrollPane.setViewportView(marketsPlace);
         //add sample markets to panel for unauthorized users
@@ -311,7 +392,7 @@ public class window extends javax.swing.JFrame {
                 .addComponent(signUpInformLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SignUpButton)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         CardPanel.add(loginPanel, "loginWindowCard");
@@ -413,7 +494,7 @@ public class window extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, signUpPanelLayout.createSequentialGroup()
                         .addComponent(confirmSignUpButton1)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addComponent(backToMarketScreenButton1)
                 .addContainerGap())
             .addGroup(signUpPanelLayout.createSequentialGroup()
@@ -452,10 +533,10 @@ public class window extends javax.swing.JFrame {
 
         jScrollPane1.setVerticalScrollBar(new customscrollbar.customScrollBar());
 
-        jEditorPane1.setContentType("text/html"); // NOI18N
-        jEditorPane1.setText("<html> <style> #lineBorder {   border: 2px solid powderblue; } h1{   list-style-type: none;   margin: 0;   padding: 0;   overflow: hidden;   background-color: #cacaca; }  h2{   list-style-type: none;   margin: 0;   padding: 10px 0px 10px 40px;   overflow: hidden;   background-color: #cacaca; }  ul {   list-style-type: none;   margin: 0;   padding: 10px 0px 10px 40px;   overflow: hidden;   background-color: #f0f0f0; }  </style> <body>  <h1>Settings</h1>   <h2>User</h2> <ul> <li id=LineBorder>name</li> <li id=LineBorder>surname</li> <li id=LineBorder>email</li> </ul>   <h2>Address book</h2> <ul> <li id=LineBorder><pre>city\t\tcityCode</pre></li> <li id=LineBorder>address;</li> <li id=LineBorder>address2;</li> </ul>   <h2>Payment</h2> <ul> <li id=LineBorder>card1</li> <li id=LineBorder>card2</li> <li id=LineBorder>card3</li> </ul>   </body> </html>");
-        jEditorPane1.setToolTipText("");
-        jScrollPane1.setViewportView(jEditorPane1);
+        htmlEditorPane.setContentType("text/html"); // NOI18N
+        htmlEditorPane.setText("<html> <style> #lineBorder {   border: 2px solid powderblue; } h1{   list-style-type: none;   margin: 0;   padding: 0;   overflow: hidden;   background-color: #cacaca; }  h2{   list-style-type: none;   margin: 0;   padding: 10px 0px 10px 40px;   overflow: hidden;   background-color: #cacaca; }  ul {   list-style-type: none;   margin: 0;   padding: 10px 0px 10px 40px;   overflow: hidden;   background-color: #f0f0f0; }  </style> <body>  <h1>Settings</h1>   <h2>User</h2> <ul> <li id=LineBorder><pre>Name: %s       Phone: %s</pre></li> <li id=LineBorder><pre>Surname: %s</pre></li> <li id=LineBorder><pre>Email: %s</pre></li> </ul>   <h2>Address book</h2> <ul> <li id=LineBorder ><pre>City: %s            City Code: %s</pre></li> <li id=LineBorder><pre>%s;</pre></li> <li id=LineBorder><pre>%s;</pre></li> <li id=LineBorder><pre>%s</pre></li> </ul>   <h2>Payment</h2> <ul> <li id=LineBorder><pre>Card: %s</pre></li> </ul>   </body> </html>");
+        htmlEditorPane.setToolTipText("");
+        jScrollPane1.setViewportView(htmlEditorPane);
 
         javax.swing.GroupLayout userInfoPanelLayout = new javax.swing.GroupLayout(userInfoPanel);
         userInfoPanel.setLayout(userInfoPanelLayout);
@@ -463,7 +544,7 @@ public class window extends javax.swing.JFrame {
             userInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userInfoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                 .addContainerGap())
         );
         userInfoPanelLayout.setVerticalGroup(
@@ -476,16 +557,113 @@ public class window extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab1", userInfoPanel);
 
-        javax.swing.GroupLayout changeSettingsPanelLayout = new javax.swing.GroupLayout(changeSettingsPanel);
-        changeSettingsPanel.setLayout(changeSettingsPanelLayout);
-        changeSettingsPanelLayout.setHorizontalGroup(
-            changeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+        changeSettingsPanel.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBackground(new java.awt.Color(128, 128, 128));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 100));
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel2.setText("Change Settings");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
-        changeSettingsPanelLayout.setVerticalGroup(
-            changeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        changeSettingsPanel.add(jPanel1, java.awt.BorderLayout.NORTH);
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(500, 260));
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 260));
+
+        changeSettingsCityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        changeSettingsCityLabel.setText("City");
+        changeSettingsCityLabel.setToolTipText("select one from box");
+
+        changeSettingsAddressLabel.setText("Address");
+
+        changeSettingsAddressField.setMinimumSize(new java.awt.Dimension(95, 29));
+
+        changeSettingsPhoneField.setPreferredSize(new java.awt.Dimension(95, 29));
+
+        changeSettingsPhoneLabel.setText("Phone");
+        changeSettingsPhoneLabel.setToolTipText("it is optional");
+
+        changeSettingsCardLabel.setText("Debit card");
+        changeSettingsCardLabel.setToolTipText("Enter card number");
+
+        changeSettingsCardField.setPreferredSize(new java.awt.Dimension(95, 29));
+
+        changeSettingsApplyButton.setText("Apply");
+        changeSettingsApplyButton.setFocusable(false);
+        changeSettingsApplyButton.setPreferredSize(new java.awt.Dimension(95, 29));
+        changeSettingsApplyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changeSettingsApplyButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changeSettingsCityLabel)
+                    .addComponent(changeSettingsAddressLabel)
+                    .addComponent(changeSettingsPhoneLabel)
+                    .addComponent(changeSettingsCardLabel))
+                .addGap(85, 85, 85)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changeSettingsApplyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(changeSettingsPhoneField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changeSettingsCardField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changeSettingsAddressField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changeSettingsCityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(114, 114, 114))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(changeSettingsCityLabel)
+                    .addComponent(changeSettingsCityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(changeSettingsAddressLabel)
+                    .addComponent(changeSettingsAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(changeSettingsPhoneLabel)
+                    .addComponent(changeSettingsPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(changeSettingsCardLabel)
+                    .addComponent(changeSettingsCardField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(changeSettingsApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setViewportView(jPanel2);
+
+        changeSettingsPanel.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("tab2", changeSettingsPanel);
 
@@ -505,6 +683,64 @@ public class window extends javax.swing.JFrame {
         selectedMarketPanel.setPreferredSize(new java.awt.Dimension(500, 360));
         selectedMarketPanel.setLayout(new java.awt.BorderLayout());
         CardPanel.add(selectedMarketPanel, "selectedMarketCard");
+
+        cartPanel.setPreferredSize(new java.awt.Dimension(500, 360));
+        cartPanel.setLayout(new java.awt.BorderLayout());
+
+        orderDetailsPanel.setBackground(new java.awt.Color(246, 246, 246));
+        orderDetailsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 0, 0), new java.awt.Color(128, 0, 0)));
+        orderDetailsPanel.setPreferredSize(new java.awt.Dimension(120, 360));
+
+        jLabel1.setText("Subtotal");
+
+        ProceedToCheckoutButton.setBackground(new java.awt.Color(192, 0, 0));
+        ProceedToCheckoutButton.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        ProceedToCheckoutButton.setForeground(new java.awt.Color(254, 254, 254));
+        ProceedToCheckoutButton.setText("Proceed");
+        ProceedToCheckoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ProceedToCheckoutButton.setFocusable(false);
+
+        totPriceLabel.setText("jLabel2");
+
+        javax.swing.GroupLayout orderDetailsPanelLayout = new javax.swing.GroupLayout(orderDetailsPanel);
+        orderDetailsPanel.setLayout(orderDetailsPanelLayout);
+        orderDetailsPanelLayout.setHorizontalGroup(
+            orderDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(orderDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(orderDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(ProceedToCheckoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(totPriceLabel)
+                    .addComponent(jSeparator2))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        orderDetailsPanelLayout.setVerticalGroup(
+            orderDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(orderDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totPriceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ProceedToCheckoutButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cartPanel.add(orderDetailsPanel, java.awt.BorderLayout.EAST);
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(380, 360));
+
+        itemsPanel.setBackground(new java.awt.Color(246, 246, 246));
+        itemsPanel.setPreferredSize(new java.awt.Dimension(380, 360));
+        itemsPanel.setLayout(new javax.swing.BoxLayout(itemsPanel, javax.swing.BoxLayout.PAGE_AXIS));
+        jScrollPane2.setViewportView(itemsPanel);
+
+        cartPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        CardPanel.add(cartPanel, "CartCard");
 
         windowSplitPane.setRightComponent(CardPanel);
 
@@ -642,8 +878,8 @@ public class window extends javax.swing.JFrame {
 
     private void applyLogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyLogInButtonMouseClicked
         // TODO add your handling code here:
-        appDB.logIn("halilibo@mail.com","ibo123");
-        //appDB.logIn(emailField.getText(), String.valueOf(passwdField.getPassword()) );
+        //appDB.logIn("halilibo@mail.com","ibo123");
+        appDB.logIn(emailField.getText(), String.valueOf(passwdField.getPassword()) );
         
         //authentication failed
         if (appDB.isLogged()<1) {
@@ -658,12 +894,17 @@ public class window extends javax.swing.JFrame {
             
             marketsPlace.removeAll();
             
+            loginButton.setVisible(false);
+            logoutButton.setVisible(true);
+            
             java.awt.CardLayout c=(java.awt.CardLayout)(CardPanel.getLayout());
             c.show(CardPanel, "commerceWindowCard");
             
             addMarketsToScrollPane(appDB.account.getRestaurantsPopularity());
             
             restaurantsLabel.setText(String.format("Restaurants on %s",appDB.account.getID()[2] ));
+            
+            setUserSettingsFromHtml(1);
             //System.out.println(getClass().getResource("userInfoHtml.html"));
             /*
             Path fileName=Path.of( getClass().getResource("userInfoHtml.html") );
@@ -692,8 +933,31 @@ public class window extends javax.swing.JFrame {
                     ,signUpSurNameField.getText()
                     ,signUpEmailField.getText()
                     ,String.valueOf(signUpPasswdField.getText()) );
-            System.out.println(query);
-            //appDB.updateDB(query);
+            
+
+            
+            int response=appDB.updateDB(query);
+            if (response<1) {//signup fail
+                System.out.println("error while signing up: CODE:"+response);
+            }
+            else{//signup success
+                java.awt.CardLayout c=(java.awt.CardLayout)(CardPanel.getLayout());
+        c.show(CardPanel, "loginWindowCard");
+            
+            emailField.setText(signUpEmailField.getText());
+            
+            System.out.println("signUp SUCCESS!!\nemail:"
+                    +signUpEmailField+
+                    "\npassword:"+String.valueOf( signUpPasswdField.getText() ));
+            }
+            
+            signUpEmailField.setText( "" );
+            signUpNameField1.setText( "" );
+            signUpSurNameField.setText( "" );
+            signUpPasswdField.setText( "" );
+            
+            
+            
             
             /*
             forward to settings to set up its informations
@@ -705,29 +969,125 @@ public class window extends javax.swing.JFrame {
         // TODO add your handling code here:
         java.awt.CardLayout c=(java.awt.CardLayout)(CardPanel.getLayout());
         c.show(CardPanel, "userSettingsCard");
-    }//GEN-LAST:event_settingsButtonMouseClicked
-
-    private void marketsPlaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketsPlaceMouseClicked
-        // TODO add your handling code here:
-        Component[] c=marketsPlace.getComponents();
-        java.awt.Point mPos=evt.getPoint();
         
-        for(Component cpt:c){
-            if (mPos.getX()>=cpt.getX()
-                    && mPos.getX()<=cpt.getX()+cpt.getWidth() ) {
+    }//GEN-LAST:event_settingsButtonMouseClicked
+    private void setUserSettingsFromHtml(int command){
+        
+        String htlmlStr="";
+        
+        File f=new File("src/userInfoHtml.html");
+        
+        FileInputStream fis=null;
+        try {
+            fis=new FileInputStream(f);
+            int r;
+            while((r=fis.read())!=-1){
+                htlmlStr+=(char)r;
+            }
+                fis.close();
                 
-                if (mPos.getY()>=cpt.getY()
-                    && mPos.getY()<=cpt.getY()+cpt.getHeight()) {
+                if (command<0) {
+                    htlmlStr=String.format(htlmlStr,
+                        "","","","",//name,phone,surname,email
+                        "","","","","",//city,cCode,addr{1,2,3}
+                        "");// debit cards
+                
+                htmlEditorPane.setText(htlmlStr);
                     
-                    marketPlaceBox mpb=(marketPlaceBox)cpt;
-                    getSelectedMarketPlace(mpb);
-                }
-   
+            
+            }else{
+                    
+                
+                List<String> c=appDB.account.getIDContents();//account contents
+                
+
+                //set address field contents
+                String[] addr=c.get(7).split(",");
+                for (int i = 3; i < addr.length; i++) {
+                    addr[2]+=";"+addr[i];
+                    addr[i]=null;
+            }
+
+                htlmlStr=String.format(htlmlStr,
+                        c.get(3),c.get(6),c.get(4),c.get(2),//name,phone,surname,email
+                        c.get(9),c.get(0),addr[0],addr[1],addr[2],//city,cCode,addr{1,2,3}
+                        c.get(5));// debit cards
+                
+                htmlEditorPane.setText(htlmlStr);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(window.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        // TODO add your handling code here:
+        appDB.logOut();
+        logoutButton.setVisible(false);
+        loginButton.setVisible(true);
+        setUserSettingsFromHtml(-1);
+        restaurantsLabel.setText("Logged out");
+        
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
+    private void cartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartButtonMouseClicked
+        // TODO add your handling code here:
+        java.awt.CardLayout c=(java.awt.CardLayout)(CardPanel.getLayout());
+        c.show(CardPanel, "CartCard");
+    }//GEN-LAST:event_cartButtonMouseClicked
+
+    private void changeSettingsApplyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeSettingsApplyButtonMouseClicked
+        // TODO add your handling code here:
+        if (appDB.isLogged()>0) {
+            
+        
+            String query="update customer"
+                    + " set city_id=%s"
+                    + " address=\'%s\'";
+            
+            if (changeSettingsCityComboBox.getSelectedItem().toString().isEmpty()
+                    || changeSettingsAddressField.getText().isEmpty()) {
+                System.out.println("user have to enter at least city and address to uodate settings!");
+                return;
+            }
+            
+            query=String.format(query,
+                    changeSettingsCityComboBox.getSelectedItem().toString()
+                    ,changeSettingsAddressField.getText());
+
+            if (!changeSettingsPhoneField.getText().isEmpty()) {
+                query+=" phone_num=\'" +changeSettingsPhoneField.getText()+ "\'";
+            }
+            if (!changeSettingsCardField.getText().isEmpty()) {
+                query+=" creadit_num=\'" +changeSettingsCardField.getText()+ "\'";
+            }
+            query+=" where email=\'"+appDB.account.getEmail()+"\'";
+            System.exit(0);
+            int response=appDB.updateDB(query);
+            if (response<1) {//signup fail
+                System.out.println("error while signing up: CODE:"+response);
+            }else{
+                System.out.println("user settings updated");
             }
         }
-    }//GEN-LAST:event_marketsPlaceMouseClicked
+    }//GEN-LAST:event_changeSettingsApplyButtonMouseClicked
 
-    private void getSelectedMarketPlace(marketPlaceBox market){
+    private void marketButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marketButtonMouseClicked
+        // TODO add your handling code here:
+        java.awt.CardLayout c=(java.awt.CardLayout)(CardPanel.getLayout());
+            c.show(CardPanel, "commerceWindowCard");
+    }//GEN-LAST:event_marketButtonMouseClicked
+
+    public void addItemToCart(menuItemPanel p){
+        itemsPanel.add(p);
+    }
+    public void removeItemFromCart(menuItemPanel p){
+        itemsPanel.remove(p);
+        revalidate();
+        repaint();
+    }
+    
+    public void getSelectedMarketPlace(marketPlaceBox market){
         
         marketDetailBox mDetail=new marketDetailBox();
         javax.swing.JPanel p=(javax.swing.JPanel)market.getComponent(0);
@@ -849,23 +1209,47 @@ public class window extends javax.swing.JFrame {
     private javax.swing.JLabel AppNameLabel2;
     private javax.swing.JPanel CardPanel;
     private javax.swing.JLabel ErrorLabel;
+    private javax.swing.JButton ProceedToCheckoutButton;
     private javax.swing.JButton SignUpButton;
     private javax.swing.JButton applyLogInButton;
     private javax.swing.JButton backToMarketScreenButton;
     private javax.swing.JButton backToMarketScreenButton1;
+    private javax.swing.JButton cartButton;
+    private javax.swing.JPanel cartPanel;
+    private javax.swing.JTextField changeSettingsAddressField;
+    private javax.swing.JLabel changeSettingsAddressLabel;
+    private javax.swing.JButton changeSettingsApplyButton;
+    private javax.swing.JTextField changeSettingsCardField;
+    private javax.swing.JLabel changeSettingsCardLabel;
+    private javax.swing.JComboBox<String> changeSettingsCityComboBox;
+    private javax.swing.JLabel changeSettingsCityLabel;
     private javax.swing.JPanel changeSettingsPanel;
+    private javax.swing.JTextField changeSettingsPhoneField;
+    private javax.swing.JLabel changeSettingsPhoneLabel;
     private javax.swing.JPanel commerceWindowPanel;
     private javax.swing.JButton confirmSignUpButton1;
     private javax.swing.JTextField emailField;
-    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JEditorPane htmlEditorPane;
+    private javax.swing.JPanel itemsPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JButton marketButton;
     private javax.swing.JPanel marketsPlace;
     private javax.swing.JScrollPane marketsScrollPane;
     private javax.swing.JPanel marketsTopPanel;
+    private javax.swing.JPanel orderDetailsPanel;
     private javax.swing.JPasswordField passwdField;
     private javax.swing.JLabel restaurantsLabel;
     private javax.swing.JPanel rootPanel;
@@ -877,6 +1261,7 @@ public class window extends javax.swing.JFrame {
     private javax.swing.JPanel signUpPanel;
     private javax.swing.JPasswordField signUpPasswdField;
     private javax.swing.JTextField signUpSurNameField;
+    private javax.swing.JLabel totPriceLabel;
     private javax.swing.JPanel userInfoPanel;
     private javax.swing.JPanel userPanel;
     private javax.swing.JPanel userSettingsPanel;

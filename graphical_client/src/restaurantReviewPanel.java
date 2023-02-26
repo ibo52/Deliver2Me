@@ -43,6 +43,8 @@ public class restaurantReviewPanel extends javax.swing.JPanel {
         dateLabel.setForeground(new java.awt.Color(125, 125, 125));
         dateLabel.setText("date");
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(262, 117));
+
         reviewArea.setColumns(20);
         reviewArea.setRows(5);
         jScrollPane1.setViewportView(reviewArea);

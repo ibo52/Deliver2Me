@@ -80,6 +80,8 @@ public class marketPlaceBox extends javax.swing.JPanel {
                 (int)reviewEmojiLabel.getPreferredSize().getHeight(), java.awt.Image.SCALE_SMOOTH) ));
         revalidate();
         repaint();
+        javax.swing.JFrame root=(javax.swing.JFrame)this.getParent();
+        
     }
 
     /**
@@ -102,6 +104,11 @@ public class marketPlaceBox extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(220, 220, 220), new java.awt.Color(144, 144, 144)));
         setMaximumSize(new java.awt.Dimension(512, 512));
         setPreferredSize(new java.awt.Dimension(256, 256));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(new java.awt.BorderLayout());
 
         marketInfoPanel.setBackground(new java.awt.Color(254, 254, 254));
@@ -146,6 +153,12 @@ public class marketPlaceBox extends javax.swing.JPanel {
 
         add(MarketImagePanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        window rootWindow = (window) javax.swing.SwingUtilities.getWindowAncestor(this);
+        rootWindow.getSelectedMarketPlace(this);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

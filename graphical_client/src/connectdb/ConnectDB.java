@@ -46,6 +46,7 @@ public class ConnectDB {
         
         private int city_id;//the province code where user lives
         private String city;
+        private List<String> ID;
         
         
         //constructor
@@ -53,7 +54,7 @@ public class ConnectDB {
             this.email=email;
             this.id=id;
             
-            String Query="SELECT customer_id,city_id,city_name FROM public.\"customer\""
+            String Query="SELECT * FROM public.\"customer\""
                 + " natural join city"
                 + " WHERE email=\'"+email+"\'";
             
@@ -63,10 +64,23 @@ public class ConnectDB {
         
         private void setID(ResultSet rs){
             try{
+                int rows=rs.getMetaData().getColumnCount();
+                this.ID=new ArrayList<>();
                 while( rs.next() ){
+                    /*
                     this.id=rs.getString(1);
                     this.city_id=rs.getInt(2);
                     this.city=rs.getString(3);
+                    */
+                    
+                    for (int i = 0; i<rows; i++) {
+
+                        this.ID.add( rs.getString(i+1) );
+                    }
+                    
+                    this.id=this.ID.get(1);
+                    this.city_id=Integer.parseInt(this.ID.get(0));
+                    this.city=this.ID.get(9);
                 }
                 
             } catch (SQLException ex) {
@@ -79,6 +93,12 @@ public class ConnectDB {
         public String[] getID(){
             String[] l={this.id,this.email,this.city};
             return l;
+        }
+        public List<String> getIDContents(){
+            return this.ID;
+        }
+        public String getEmail(){
+            return this.email;
         }
         
         public void getRestaurants(){

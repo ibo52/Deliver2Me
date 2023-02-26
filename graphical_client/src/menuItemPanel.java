@@ -1,3 +1,12 @@
+
+import java.awt.Color;
+
+
+
+
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,7 +22,21 @@ public class menuItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form menuItemPanel
      */
+    public boolean setButtonAsRemove=false;
+    
     java.awt.Image foodImage;
+    public menuItemPanel(int command) {
+        initComponents();
+        foodImage=new javax.swing.ImageIcon( getClass().getResource("/Images/food/SampleFood.jpg")).getImage();
+        
+        if (command==-1) {
+            this.appendButton.setBackground(Color.red);
+            this.appendButton.setForeground(Color.black);
+            this.appendButton.setText("Remove");
+            setButtonAsRemove=true;
+        }
+        drawImageToPanel();
+    }
     public menuItemPanel() {
         initComponents();
         foodImage=new javax.swing.ImageIcon( getClass().getResource("/Images/food/SampleFood.jpg")).getImage();
@@ -42,6 +65,9 @@ public class menuItemPanel extends javax.swing.JPanel {
     public void setFoodLabel(String text){
         this.foodNameLabel.setText(text);
     }
+    public String getFoodLabel(){
+        return this.foodNameLabel.getText();
+    }
     public void setFoodContentLabel(String text){
         this.foodContentsLabel.setText(text);
     }
@@ -49,6 +75,29 @@ public class menuItemPanel extends javax.swing.JPanel {
         foodImage=img.getImage();
         drawImageToPanel();
         
+    }
+    public void setContents(String foodName,String price,String foodContents, javax.swing.ImageIcon foodImg){
+        setFoodLabel(foodName);
+        setFoodPriceLabel(price);
+        setFoodContentLabel(foodContents);
+        setFoodImage(foodImg);
+    }
+    public void setContents(String[] contents){
+        setFoodLabel(contents[0]);
+        setFoodPriceLabel(contents[1]);
+        setFoodContentLabel(contents[2]);
+    }
+    public void setContents(String foodName,String price,String foodContents){
+        setFoodLabel(foodName);
+        setFoodPriceLabel(price);
+        setFoodContentLabel(foodContents);
+    }
+    public String[] getContents(){
+        String[] l={this.foodNameLabel.getText(),
+            this.priceLabel.getText(),
+            this.foodContentsLabel.getText()};
+        
+        return l;
     }
     
     
@@ -82,6 +131,11 @@ public class menuItemPanel extends javax.swing.JPanel {
         foodContentsLabel.setText("food contents or anything");
 
         appendButton.setText("Append");
+        appendButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appendButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,6 +173,21 @@ public class menuItemPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void appendButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appendButtonMouseClicked
+        // TODO add your handling code here:
+        window root=(window)javax.swing.SwingUtilities.getWindowAncestor(this);
+
+        if (setButtonAsRemove) {
+            root.removeItemFromCart(this);
+        }else{
+            menuItemPanel mip=new menuItemPanel(-1);
+            
+            mip.setContents(this.getContents());
+            root.addItemToCart(mip);
+        }
+        
+    }//GEN-LAST:event_appendButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

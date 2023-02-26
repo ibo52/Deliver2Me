@@ -181,11 +181,13 @@ public class marketDetailBox extends javax.swing.JPanel {
     
     public void appendMenu(String foodName,String price,String foodContents, javax.swing.ImageIcon foodImg){
         menuItemPanel menu=new menuItemPanel();
+        menu.setContents(foodName, price, foodContents, foodImg);
         
-        menu.setFoodLabel(foodName);
-        menu.setFoodPriceLabel(price);
-        menu.setFoodContentLabel(foodContents);
-        menu.setFoodImage(foodImg);
+        menuContent.add(menu);
+    }
+    public void appendMenu(String foodName,String price,String foodContents){
+        menuItemPanel menu=new menuItemPanel();
+        menu.setContents(foodName, price, foodContents);
         
         menuContent.add(menu);
     }
