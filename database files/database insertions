@@ -1,0 +1,807 @@
+--
+insert into city(city_id,city_name)
+values
+(1,'adana'),
+(6,'ankara'),
+(20,'denizli'),
+(34,'istanbul'),
+(35,'izmir'),
+(37,'kastamonu'),
+(43,'kütahya'),
+(45,'manisa'),
+(52,'ordu'),
+(55,'samsun');
+
+
+insert into restaurant(restaurant_id,restaurant_name)
+values
+(1,'nass-et'),
+(2,'köfteci yousef'),
+(3,'tavuk cihanı'),
+(4,'brew-mood coffe'),
+(5,'3 hürel döner-pide-çorba'),
+(6,'meşhur kokoreççi ibrahim usta'),
+(7,'bloodRed Moon'),
+(8,'damak döner'),
+(9,'abdalbey çiğköfte'),
+(10,'atom kokariç'),
+(11,'hayal pastanesi'),
+(12,'royal burger'),
+(13,'yıldızhan restaurant'),
+(14,'VeganLife healthy foods');
+
+insert into branch(city_id, phone_num, restaurant_id, address)
+values
+
+--nass-et
+(1,'0216 123 nasset',1,'adana cumhuriyet meydanı, hanlar cad., nu:1, merkez'),
+(6,'0216 123 nasset',1,'kızılay cumhuriyet meydanı, merkez'),
+(20,'0216 123 nasset',1,'pamukkale üni. kampüsü,ornek cad. nu:1, merkez'),
+(34,'0216 123 nasset',1,'kız kulesi cadd., yaprak sok.,nu:123/a, merkez'),
+(35,'0216 123 nasset',1,'izmir-ankara otobanı, AVM, 2.kat, merkez'),
+(37,'0216 123 nasset',1,'kastamonu eski cami yanı, lokantalar cad., 2. kat, merkez'),
+(43,'0216 123 nasset',1,'incehisar,cumhuriyet meydanı, ornek sokak, merkez'),
+(45,'0216 123 nasset',1,'magnesia AVM, 2. cadde, merkez'),
+(52,'0216 123 nasset',1,'AVM içi,8. kat, merkez'),
+(55,'0216 123 nasset',1,'atakum meydanı, merkez'),
+
+--köfteci yousef
+(1,'0216 222 yousef',2,'adana cumhuriyet meydanı, hanlar cad., nu:2, merkez'),
+(6,'0216 222 yousef',2,'kızılay cumhuriyet meydanı,kapıcılar cad. nu:2, merkez'),
+(20,'0216 222 yousef',2,'pamukkale üni. kampüsü,ornek cad. nu:13, merkez'),
+(34,'0216 222 yousef',2,'kız kulesi cadd., yaprak sok.,nu:564/c, merkez'),
+(35,'0216 222 yousef',2,'izmir-ankara otobanı, AVM, 2.kat, merkez'),
+(37,'0216 222 yousef',2,'kastamonu eski cami yanı, lokantalar cad., 3. kat, merkez'),
+(43,'0216 222 yousef',2,'incehisar,cumhuriyet meydanı, ornek sokak nu:33, merkez'),
+(45,'0216 222 yousef',2,'magnesia AVM, 2. cadde, ornek sokak, merkez'),
+(52,'0216 222 yousef',2,'AVM içi,8. kat, merkez'),
+(55,'0216 222 yousef',2,'atakum meydanı, merkez'),
+
+-- tavuk cihani
+(1,'0216 222 tavuk',3,'adana cumhuriyet meydani, hanlar cad., mescit yanı nu:3, merkez'),
+(6,'0216 222 tavuk',3,'kızılay cumhuriyet meydanı,kapıcılar cad. nu:32, merkez'),
+(20,'0216 222 tavuk',3,'pamukkale üni. kampüsü,ornek cad. nu:11, merkez'),
+(34,'0216 222 tavuk',3,'galata cadd., yaprak sok.,nu:2223/c, merkez'),
+(35,'0216 222 tavuk',3,'izmir-ankara otobanı, AVM, 2.kat, merkez'),
+(37,'0216 222 tavuk',3,'kastamonu eski cami yanı, lokantalar cad., 4. kat, merkez'),
+(43,'0216 222 tavuk',3,'incehisar,cumhuriyet meydanı, ornek sokak nu:3123, merkez'),
+(45,'0216 222 tavuk',3,'magnesia AVM, 3. cadde, ornek sokak, merkez'),
+(52,'0216 222 tavuk',3,'AVM içi,7. kat, merkez'),
+(55,'0216 222 tavuk',3,'atakum meydanı, cami yanı, merkez'),
+
+-- abdalbey çiğköfte
+(1,'0216 222 abd',9,'adana çarşı içi, pazaryeri cad., nu:3, merkez'),
+(6,'0216 222 abd',9,'kızılay cumhuriyet meydanı, emsal cad. nu:32, merkez'),
+(20,'0216 222 abd',9,'pamukkale üni. kampüsü, PAÜ-Park. nu:1, merkez'),
+(34,'0216 222 abd',9,'eminönü cadd., yaprak sok.,nu:323/c, merkez'),
+(34,'0216 222 abd',9,'emlakdere cadd., deynek sok.,nu:2/c, merkez'),
+(35,'0216 222 abd',9,'boyozcular cadd., yaban sok.,nu:556/c, merkez'),
+(35,'0216 222 abd',9,'çarşı cad., bornova stadyum yanı, merkez'),
+(35,'0216 222 abd',9,'konak 5. sokak, bakırcılar cad., merkez'),
+(45,'0216 222 abd',9,'manisa çarşısı, 8 havuzu yanı,şehzadeler, merkez'),
+(45,'0216 222 abd',9,'magnesia AVM, 1. cadde, ornek sokak, merkez'),
+(45,'0216 222 abd',9,'tuhfetülmülk cad., 22. otobüs durağı yanı., muradiye, merkez'),
+(52,'0216 222 abd',9,'dereler-AVM içi,7. kat, merkez'),
+(55,'0216 222 abd',9,'OMÜ kampüs, omü-park avm, merkez'),
+
+--brewmood
+(45,'0216 222 brew',4,' CBÜ kampüs, ceypark avm, muradiye, merkez'),
+(35,'0216 222 brew',4,' EGE kampüs, üni-avm, bornova, merkez'),
+(6,'0216 222 brew',4,' ,ankamall AVM, 8. kat, ankara merkez'),
+
+--3 hürel
+(45,'0212 142 3-hürel',5,'şifa sokak, mesircibey cad., nu:99/e, muradiye, merkez'),
+(6,'0212 142 3-hürel',5,'ileri sokak, ordular cad., nu:45/a, dikmen, merkez'),
+
+--kokoreççi ibrahim usta
+(45,'0216 285 ibo',6,'şengül sokak, sancak cad., nu:63/a, muradiye, merkez'),
+(35,'0216 285 ibo',6,'manisa-izmir yolu, ova cad., nu:61/a, bornova, merkez'),
+
+--bloodredmoon
+(6,'0216 285 br-moon',7,'ankara meydan, nikbinlik cad., nu:7, kızılay, merkez'),
+(45,'0216 285 br-moon',7,' hafsasultan mah., mesir cad., nu:6, CBÜ kampüs yanı, merkez'),
+
+--damak döner
+(35,'0444 333 damak',8,'ordu 2. devlet sahil yolu, hürrem sokak., nu:3/a , merkez'),
+(45,'0444 333 damak',8,'ordu 2.  yunus emre millet çarşısı, magnesia AVM., nu:3/a , merkez'),
+(52,'0444 333 damak',8,'ordu 2. han boğazı orta çarşı yolu, büyük cami arkası,., nu:5x/a, ünye'),
+
+--atom kokariç
+(35,'0216 285 atom',10,'manisa-izmir yolu, ova cad., nu:61/a, bornova, merkez'),
+(45,'0216 285 atom',10,'manisa-izmir yolu, hafsa sultan cad., nu:1/a, hafsasultan, merkez'),
+
+--hayal pastanesi
+(35,'0216 285 hayal',11,'manisa-izmir yolu, düzlük cad., nu:21/a, bornova, merkez'),
+(45,'0216 285 hayal',11,'manisa-izmir yolu, hafsa sultan cad., nu:1/a, hafsasultan, merkez'),
+
+--royal burger
+(35,'0216 285 royal',12,'izmir çarşı, değirmen cad., nu:241/a, bornova, merkez'),
+(45,'0216 285 royal',12,'cbü hafsasultan kampüs, nu:1/a, hafsasultan, merkez'),
+(34,'0216 285 royal',12,',istanbul yeditepe cad., nu:21/a, yeditepe, merkez'),
+
+--yıldızhan restaurant
+(52,'0216 285 hayal',11,'ordu perşembe ovası, harpburun cad., nu:9/a, altınordu, merkez'),
+(6,'0216 285 hayal',11,'batıkent küme evleri, akdeniz sokak, nu:3/a, batıkent, merkez'),
+(45,'0216 285 hayal',11,'ecevit kavşağı yanı, istasyon durağı, nu:79/a, merkezefendi, merkez'),
+
+--vegan life
+(55,'0216 285 hayal',11,'gezgin mah., kafeler caddesi, yalı sokak, nu:98/a, atakum, merkez'),
+(34,'0216 285 hayal',11,'batıkent küme evleri, akdeniz sokak, nu:3/a, batıkent, merkez'),
+(45,'0216 285 hayal',11,'5. sahil yolu, 8 havuzu yanı, nu:769/a, şehzadeler, merkez');
+
+insert into customer(email,name,surname,address,city_id,phone_num,credit_num,passwd)
+values
+('halilibo@mail.com','halil ibrahim','mut','CBÜ kampüsü, kyk erkek öğrenci yurdu, muradiye, 45140',45,'542','CARD-1','ibo123'),
+('selim4545@mail.com','selim hasan','eryaman','CBÜ kampüsü, kyk erkek öğrenci yurdu, muradiye, 45140',45,'123','CARD-2','selo123'),
+('yusuf123@mail.com','yusuf ziya','yalçınar','CBÜ kampüsü, kyk erkek öğrenci yurdu, muradiye, 45140',45,'323','CARD-3','yusuf123'),
+('ismet123@mail.com','ismet','özel','cumhuriyet meydanı, cami yanı 1. sokak, 35100',35,'223 22','CARD-4','ismet123'),
+('abuzer@mail.com','abuzer','kömürcü','ege üni. A-blok kimya lab., bornova civarları',35,'123 44','CARD-5','abuzer123'),
+('karaoglan@mail.com','bülent','ecevit','kızılay meydan, 1. sokak, 06100',6, '542 12','CARD-6','ecevit123'),
+('emo5206@mail.com','emirhan','güneş','Gazi üni kampüsü, mühendislik fakültesi A blok, merkez, 06100',6,'1234','CARD-7','emo123'),
+('mami@mail.com','muhammet','uygun','ondokuz mayıs üni. kampüsü, mühendislik fakültesi C blok, merkez, 55100',55,'43','CARD-8','mami123'),
+('rukiye@mail.com','rukiye','bulat','Cumhuriyet meydanı 4. sokak, emsan evleri , bozkurt,20100',20,'1234456','CARD-9','rukiye123'),
+('ekoimamov@mail.com','ekrem','imamoğlu','Cumhuriyet meydanı, İBB binasi nu:34/A, merkez, 34100',34,'78566543','CARD-10','eko123'),
+('mtanriverdi@mail.com','meral','tanrıverdi','Üsküdar cumhuriyet meydanı, 12. sokak, ornek sitesi, kat:1, 34100',34,'64799532','CARD-11','meral123');
+
+insert into food_category(category_id,category_name)
+values
+(0,''),
+(1,'atıştırmalık'),
+(2,'ara yemek'),
+(3,'içecek'),
+(4,'ana yemek'),
+(5,'tatlı'),
+(6,'et'),
+(7,'salata'),
+(8,'vegan'),
+(9,'sıcak'),
+(10,'soğuk');
+
+insert into food(food_id,food_name,category_id,opt_category_id,opt_category_id2)
+values
+(1,'tavuk döner',1,6,DEFAULT),
+(2,'et döner',1,6,DEFAULT),
+(3,'çiğ köfte',1,8,DEFAULT),
+(4,'kuzu kokoreç',1,6,DEFAULT),
+(5,'lahmacun',1,6,DEFAULT),
+(6,'patates kızartması',1,8,DEFAULT),
+(7,'hamburger(vegan)',1,8,DEFAULT),
+(8,'dana hamburger',1,6,DEFAULT),
+(9,'tavuk hamburger',1,6,DEFAULT),
+(10,'pide',1,DEFAULT,DEFAULT),
+
+(11,'ayran',3,10,DEFAULT),
+(12,'kola',3,10,8),
+(13,'sarı kola',3,10,8),
+(14,'gazoz',3,10,8),
+(15,'şalgam suyu',3,10,8),
+(16,'kahve',3,9,8),
+(17,'çay',3,9,8),
+(18,'sıcak çikolata',3,9,8),
+(19,'limonata',3,10,8),
+
+(20,'mercimek çorbası',2,8,9),
+(21,'kelle paça',2,6,9),
+(22,'tavuk suyu çorba',2,6,9),
+(23,'yayla çorba',2,8,9),
+
+(24,'iskender',4,6,DEFAULT),
+(25,'kuru fasülye(etsiz)',4,8,DEFAULT),
+(26,'kuru fasülye(etli)',4,6,DEFAULT),
+(27,'pilav',4,8,DEFAULT),
+(28,'kebap',4,6,DEFAULT),
+(29,'dana ızgara',4,6,DEFAULT),
+(30,'kuzu ızgara',4,6,DEFAULT),
+(31,'dana ciğer',4,6,DEFAULT),
+(32,'dana antrikot',4,6,DEFAULT),
+(33,'dana biftek',4,6,DEFAULT),
+(34,'kızarmış tavuk',4,6,DEFAULT),
+(35,'makarna',4,8,DEFAULT),
+(36,'köfte',4,6,DEFAULT),
+
+(37,'boyoz',5,8,DEFAULT),
+(38,'sütlaç',5,DEFAULT,DEFAULT),
+(39,'puding',5,DEFAULT,DEFAULT),
+(40,'lokma tatlısı',5,8,DEFAULT),
+(41,'baklava',5,8,DEFAULT),
+(42,'cheesecake',5,DEFAULT,DEFAULT),
+(43,'kurabiye',5,DEFAULT,DEFAULT),
+(44,'yaş pasta',5,DEFAULT,DEFAULT),
+
+(45,'çoban salata',7,1,8),
+(46,'akdeniz salata',7,1,8),
+(47,'ton balıklı salata',7,1,6);
+
+insert into "OffersMenu"(restaurant_id,menu_id,menu_name,price)
+values
+(1,2,'dana ızzgara',140),
+(1,3,'kuzu ızzgara',170),
+(1,4,'dubai antrikot',260),
+(1,5,'salt bae ciğer',120),
+(1,6,'NASSıl güzel: düve bifteği',210),
+(1,7,'NASSkender büyük',155),
+(1,8,'NASSıl yerli: A-dana Kebap',145),
+(1,9,'nass dana ızzgara',140),
+
+(2,10,'köftemle ayranım: getir yuosefim',55),
+(2,11,'yousef elinden: sıcacık mercimek çorbası',20),
+(2,12,'kelle paça + iskender menü',95),
+(2,13,'cızzgara kuzu+çoban salata',170),
+(2,14,'cızzgara dana+çoban salata',145),
+(2,15,'kebap+pilav+akdeniz salata',110),
+(2,16,'köfte+salata+şalgam',75),
+(2,17,'şalgamım ve ciğerim: şişle yousefim',80.5),
+
+(3,18,'tavuk suyu çorba',35),
+(3,19,'ayran, patates ve tavuk: çıtır menü',55),
+(3,20,'tavuk+makarna+akdeniz salata: kombo menü',65),
+(3,21,'ham ham tavuk burger+ayran: çocuk menü',35),
+(3,22,'makarna',15),
+(3,23,'çıtır tavuk kova',35),
+(3,24,'kola',10),
+(3,25,'gazoz',10),
+(3,26,'ayran',5),
+
+(4,27,'americano',25),
+(4,28,'brazil kernels',25),
+(4,29,'mystic fest of arabic',30),
+(4,30,'tokyo mırra of far east',25),
+(4,31,'chocolate mocha',28),
+(4,32,'cutey cheescake',15),
+(4,33,'cookie of lovers',15),
+
+(5,34,'ve döner(tavuk)...',25),
+(5,35,'bir yudum mercimek...',20),
+(5,36,'3 hürel ama 4 mevsim: pide...',37.5),
+(5,37,'bir yudum paça...',35),
+(5,38,'ve döner(et)...',32),
+(5,39,'kuru fasülye(etsiz)...',10),
+(5,40,'kürek lahmacun..',13),
+(5,41,'işbaşı ama kuşbaşı: pide...',32.5),
+
+
+(6,42,'40 yıllık tecrübe: çeyrek kokoreç',17.5),
+(6,43,'40 yıllık tecrübe: yarım kokoreç',35),
+(6,44,'usta elinden çoban salata',10),
+(6,45,'yayık ayran',2.5),
+(6,46,'kutu ayran',5),
+(6,47,'kutu kola',12),
+(6,48,'çay',3),
+
+(7,49,'bloodRed tea',9),
+(7,50,'cheesy cake',17.5),
+(7,51,'caffein bomb mocha',24.5),
+(7,52,'caffein of the america',24.5),
+(7,53,'hug of love hot chocolate',26.5),
+(7,54,'puddy puddy pudding',19),
+(7,55,'rookie cookies',15),
+
+(8,56,'tavuk döner',24.5),
+(8,57,'et döner',29.5),
+(8,58,'tavuk dürüm+ayran',27.5),
+(8,59,'et dürüm+ayran',32.5),
+(8,60,'pilav üstü tavuk+ayran',32.5),
+(8,61,'pilav üstü et+ayran',39.5),
+(8,62,'salata',13.5),
+(8,63,'33cc kola',10.5),
+(8,64,'20cc gazoz',7.5),
+(8,65,'çay',3.5),
+
+(9,66,'çiğköfte dürüm (120gr çiğköfte)',10.5),
+(9,67,'300gr çiğköfte+roka+turşu+sos',25),
+(9,68,'500gr çiğköfte+roka+turşu+sos',35),
+(9,69,'1000gr çiğköfte+roka+turşu+sos',60),
+(9,70,'şalgam suyu (1 litre)',25),
+(9,71,'şalgam suyu (33cc)',10),
+(9,72,'öğrenci menü:dürüm+ayran',14),
+(9,73,'20cc ayran',4),
+
+(10,74,'atom: çeyrek kokoreç',18.5),
+(10,75,'duble atom: yarım kokoreç',37),
+(10,76,'akdeniz yeşillikleri: salata',12),
+(10,77,'has yayık ayran',2.5),
+(10,78,'kutu ayran',5),
+(10,79,'kutu kola',11),
+(10,80,'çay',2.5),
+(10,81,'çeyrek kokoreç+ayran+salata',30),
+
+(11,82,'lokmacıklar',5),
+(11,83,'cheeskek',16),
+(11,84,'sıkma limonata',12),
+(11,85,'sütlaç',15),
+(11,86,'fıstıklı baklava (2 dilim)',16.5),
+(11,87,'cevizli baklava (2 dilim)',12.5),
+(11,88,'sıcacık çay',6),
+(11,89,'dilim yaş pasta',14),
+
+(12,90,'royal size:meat burger',48),
+(12,91,'regular size:meat burger',30),
+(12,92,'royal size:chicken burger',39),
+(12,93,'regular size:chicken burger',23),
+
+(12,94,'royal meat burger+fries+coke',65),
+(12,95,'regular meat burger+fries+coke',49),
+(12,96,'royal size:meat burger',48),
+(12,97,'regular size:meat burger',30),
+(12,98,'coke (1 litre)',15),
+(12,99,'sprite can(33cc)',10),
+(12,100,'coke can(33cc)',10),
+(12,101,'sprite can(33cc)',10),
+
+(13,102,'mercimek çorba',10),
+(13,103,'paça çorba',18),
+(13,104,'yayla çorba',10),
+(13,105,'tavuksuyu çorba',10),
+(13,106,'etli kuru fasülye',14),
+(13,107,'pilav',14),
+(13,108,'lahmacun',10),
+(13,109,'kuşbaşı pide',27),
+(13,110,'kıymalı pide',22),
+(13,111,'karışık pide',30),
+(13,112,'sütlaç',12),
+(13,113,'mercimek+pilav+kuru tabldot',30),
+
+--vegan life
+(14,114,'vegan mid burger',28),
+(14,115,'vegan big burger',40),
+(14,116,'vegan kuru fasülye',14),
+(14,117,'vegan asia rice',24),
+(14,118,'vegan crispy fries',12),
+(14,119,'vegan spaghetti',16),
+(14,120,'spaghetti+fries+mid burger menu',51.5),
+(14,121,'coke+fries+mid burger menu',48.6),
+(14,122,'vegan coke',14),
+(14,123,'freshy lemonade',24);
+
+insert into menu(menu_id,food_id)
+values
+(2,29),
+(3,30),
+(4,32),
+(5,31),
+(6,33),
+(7,24),
+(8,28),
+(9,29),
+
+(10,36),
+(10,11),
+(11,20),
+(12,21),
+(12,24),
+(13,30),
+(13,45),
+(14,29),
+(14,45),
+(15,27),
+(15,28),
+(15,46),
+(16,45),
+(16,36),
+(16,15),
+(17,15),
+(17,31),
+
+(18,22),
+(19,11),
+(19,34),
+(19,6),
+(20,34),
+(20,35),
+(20,46),
+(21,11),
+(21,9),
+(22,35),
+(23,34),
+(24,12),
+(25,14),
+(26,11),
+
+(27,16),
+(28,16),
+(29,16),
+(30,16),
+(31,16),
+(32,42),
+(33,43),
+
+(34,1),
+(35,20),
+(36,10),
+(37,21),
+(38,2),
+(39,25),
+(40,5),
+(41,10),
+
+(42,4),
+(43,4),
+(44,45),
+(45,11),
+(46,11),
+(47,12),
+(48,17),
+
+(49,17),
+(50,42),
+(51,16),
+(52,16),
+(53,18),
+(54,39),
+(55,43),
+
+(56,1),
+(57,2),
+(58,1),
+(58,11),
+(59,2),
+(59,11),
+(60,11),
+(60,1),
+(60,27),
+(61,11),
+(61,2),
+(61,27),
+(62,45),
+(63,12),
+(64,14),
+(65,17),
+
+(66,3),
+(67,3),
+(68,3),
+(69,3),
+(70,15),
+(71,15),
+(72,2),
+(72,11),
+(73,11),
+
+(74,4),
+(75,4),
+(76,46),
+(77,11),
+(78,11),
+(79,12),
+(80,17),
+(81,11),
+(81,46),
+(81,4),
+
+(82,40),
+(83,42),
+(84,19),
+(85,38),
+(86,41),
+(87,41),
+(88,17),
+(89,44),
+
+(90,8),
+(91,8),
+(92,9),
+(93,9),
+(94,8),
+(94,12),
+(94,6),
+(95,8),
+(95,12),
+(95,6),
+(96,8),
+(97,8),
+(98,12),
+(99,14),
+(100,12),
+(101,14),
+
+(102,20),
+(103,21),
+(104,23),
+(105,22),
+(106,26),
+(107,27),
+(108,5),
+(109,10),
+(110,10),
+(111,10),
+(112,38),
+(113,20),
+(113,26),
+(113,27),
+
+(114,7),
+(115,7),
+(116,25),
+(117,27),
+(118,6),
+(119,35),
+(120,35),
+(120,6),
+(120,7),
+(121,12),
+(121,6),
+(121,7),
+(122,12),
+(123,19);
+
+insert into "orderDetails"(order_id,customer_id,restaurant_id,status,date)
+values
+--customer ibrahim
+(1,1,1,'d','22-10-2022'),
+(2,1,1,'d','28-10-2022'),
+(3,1,3,'d','05-11-2022'),
+(4,1,6,'d','10-12-2022'),
+(5,1,4,'d','12-12-2022'),
+
+--customer emirhan
+(6,7,7,'d','5-10-2021'),
+(7,7,3,'d','8-11-2021'),
+(8,7,8,'d','2-03-2022'),
+(9,7,11,'d','5-08-2022'),
+(10,7,2,'d','5-09-2022'),
+(11,7,1,'d','16-09-2022'),
+(12,7,1,'d','16-09-2022'),
+
+--customer abuzer
+(13,5,2,'d','20-08-2022'),
+(14,5,2,'d','28-08-2022'),
+(15,5,2,'d','14-09-2022'),
+(16,5,6,'d','20-09-2022'),
+(17,5,8,'d','20-09-2022'),
+
+--customer muhammet
+(18,8,9,'d','20-06-2022'),
+(19,8,9,'d','30-08-2022'),
+(20,8,9,'d','7-10-2022'),
+(21,8,11,'d','20-10-2022'),
+(22,8,11,'s','20-12-2022'),
+(23,8,3,'s','20-12-2022'),
+
+--ibrahim again
+(24,1,2,'s','20-12-2022'),
+(25,1,2,'s','20-12-2022'),
+
+--muhammet again
+(26,8,4,'d','23-12-2022'),
+
+(27,8,5,'d','25-12-2022'),
+(28,8,5,'d','28-12-2022'),
+
+--abuzer again
+(29,5,10,'d','16-12-2022'),
+(30,5,10,'d','19-12-2022');
+
+insert into "orderings"(order_id,menu_id)
+values
+--ibrahim
+(1,2),
+(1,4),
+(2,6),
+(3,19),
+(4,43),
+(4,44),
+(4,45),
+(5,33),
+(5,29),
+
+--emirhan
+(6,51),
+(6,52),
+(6,55),
+(7,20),
+(7,18),
+(8,68),
+(8,70),
+(8,73),
+(9,84),
+(9,89),
+(10,13),
+(11,8),
+(12,4),
+
+--abuzer
+(13,12),
+(14,13),
+(15,16),
+(16,43),
+(16,45),
+(17,59),
+
+----muhammet
+(18,68),
+(19,70),
+(19,69),
+(20,72),
+(21,84),
+(21,86),
+(22,89),
+(23,23),
+
+--ibrahim again
+(24,11),
+(24,15),
+(25,17);
+
+----muhammet again
+(26,28),
+(26,32),
+(26,33),
+(26,30),
+
+(27,36),
+(28,35),
+(28,34),
+(28,40),
+
+--abuzer again
+(29,75),
+(29,76),
+(30,75),
+(30,76),
+(30,77),
+(30,81);
+
+--update total price row of orderDetails tab,by sum(price) of orderings
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=1)
+	where order_id=1;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=2)
+	where order_id=2;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=3)
+	where order_id=3;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=4)
+	where order_id=4;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=5)
+	where order_id=5;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=6)
+	where order_id=6;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=7)
+	where order_id=7;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=8)
+	where order_id=8;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=9)
+	where order_id=9;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=10)
+	where order_id=10;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=11)
+	where order_id=11;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=12)
+	where order_id=12;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=13)
+	where order_id=13;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=14)
+	where order_id=14;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=15)
+	where order_id=15;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=16)
+	where order_id=16;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=17)
+	where order_id=17;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=18)
+	where order_id=18;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=19)
+	where order_id=19;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=20)
+	where order_id=20;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=21)
+	where order_id=21;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=22)
+	where order_id=22;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=23)
+	where order_id=23;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=24)
+	where order_id=24;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=25)
+	where order_id=25;
+	
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=26)
+	where order_id=26;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=27)
+	where order_id=27;
+	
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=28)
+	where order_id=28;
+	
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=29)
+	where order_id=29;
+
+update "orderDetails"
+	SET tot_price=(SELECT SUM(price) FROM orderings NATURAL JOIN "OffersMenu" WHERE order_id=30)
+	where order_id=30;
+	
+
+--insert comments to restaruants
+insert into comment(restaurant_id,entry,rate,order_id)
+values
+--ibrahims comments
+(1,'fiyat performans ürünü beğendim. Hızlı servis.Sağolun',8.2,1),
+(1,'güzel terbiyeli etler. kaliteli servis,hızılı sunum',7.8,,2),
+(3,'idaer eder. Servis biraz yavaştı',6.0,3),
+(6,'fiyatlar pahalı, ancak kalitede düşme var. Esjkisi gibi değil',5.2,4),
+(4,'eh işte. ortalama servis, ortalama tat.',5.7,5),
+
+--comments emirhan
+(7,'Kurabiyeler enfesti, kahveyle çok iyi gitti.',9.0,6),
+(3,'mis gibi tavuklar. Spiraişi hazırlayan arkadaşa teşekkürler:^)',8.5,7),
+(8,'Uzun zamandır döner yemiyordum. İyi ki bu restoranı tercih etmişim',9.0,8),
+(11,'paket gelirken sallanmış, ürünün şekli kaymış. Dikkat etmemişler >:(',5.2,9),
+(2,'şipariş 22 dakikada geldi. Çok hızlılar. Tat eh işte',7.6,10),
+(1,'etlerin terbiyesi çok iyi değil, tadı da yok gibiydi.Bu fiyata kötü hizmet.',5.4,11),
+(1,'Bu menüyü gerçekten güzel yapmışlar etin tadı güzel.',8.7,12),
+
+--comments abuzer
+(2,'Mezeler az olmuş.ortalama servis, bu ne biçim tat.',6.3,13),
+(2,'içine az malzeme atsanıza. Bu nedir. Bomboş ekmek göndermişsiniz .',5.0,14),
+(2,'hah tat biraz düzelmiş. Servis hızı iyi',7.5,15),
+(6,'vallahi de güzel yspmış, kaliteli bir mekandır ibramım yeri',8.9,16),
+(8,'Güzel ama içine malzemeleri düzgün kesin be kardeşim. Kütük gibi domatesler',6.8,17),
+
+
+--comments muhammet
+(9,'Harbi güzel. Bir bulgurdan beklenecek en güzel tat',8.2,18),
+(9,'fiyat performans ürünü. öğrenciye gider.',7.0,19),
+(9,'Mezeler az olmuş.ortalama servis, ortalama tat.',6.6,20),
+(11,'Güzel bir tat ve uyum.',8.3,21),
+(11,'kurye çok hızlı, ama gelirken ürün sallanmış.',7.4,22),
+(3,'tavuk için hep tercih ettiğim mekan, öğrenci dostu.',7.9,23),
+
+(4,'brezilya kahvesi çok güzel. arkadaş da arap mırrası aldı. kurabiye ve kekle löpüredek bitirdik.',8.3,26),
+
+--comments abuzer again
+(5,'4 mevsimin hüznüyle dolan pidem hızlıca geldi. Konsept güzel, yemekler hoş',8.6,27),
+(5,'içimi ısıtan bir mercimek ve güzel soslu bir tavuk, lahmacun küçüktü ama.',7.9,28),
+(10,'kokoreç güzel harmanlanmış, ben beğendim.',8.7,29),
+(10,'ayranı iyi yaymışlar ha. çocuğa da 3lü menü söyledim o da beğendi.',7.9,30);
